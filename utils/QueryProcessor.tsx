@@ -39,7 +39,7 @@ export default function QueryProcessor(query: string): string {
   const numbers = query.match(/\d+/g);
 
   if (numbers) {
-    const sum = numbers.reduce((acc, curr) => acc + parseInt(curr), 0);
+    const sum = numbers.reduce((acc, curr) => acc - parseInt(curr), 0);
     return sum.toString();
   }
 } 
@@ -47,9 +47,9 @@ export default function QueryProcessor(query: string): string {
   else if (query.toLowerCase().includes("multiplied by")) {
     const numbers = query.match(/\d+/g);
 
-    if (numbers && numbers.length === 2) {
-      const product = parseInt(numbers[0]) * parseInt(numbers[1]);
-      return product.toString();
+    if (numbers) {
+      const sum = numbers.reduce((acc, curr) => acc * parseInt(curr), 0);
+      return sum.toString();
     }
   }
   else if (query.toLowerCase().includes("the largest")) {
@@ -90,6 +90,13 @@ export default function QueryProcessor(query: string): string {
   } else {
     return "None.";
   }
+  } else if (query.toLowerCase().includes("power")) {
+    const numbers = query.match(/\d+/g);
+
+    if (numbers) {
+      const sum = numbers.reduce((acc, curr) => acc ** parseInt(curr), 0);
+      return sum.toString();
+    }
   }
 
   return "";
