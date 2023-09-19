@@ -11,16 +11,32 @@ export default function QueryProcessor(query: string): string {
     );
   } else if (query.toLowerCase().includes("what is your name?")) {
     return (
-      "TheHolySpirit"
+      "My name is Lebo."
     );
   } else if (query.toLowerCase().includes("plus")) {
-    const numbers = query.match(/\d+/g); // Extract numbers from string
+    const numbers = query.match(/\d+/g);
 
     if (numbers && numbers.length === 2) {
       const sum = parseInt(numbers[0]) + parseInt(numbers[1]);
       return sum.toString();
     }
+  } else if (query.toLowerCase().includes("multiplied by")) {
+    const numbers = query.match(/\d+/g);
+
+    if (numbers && numbers.length === 2) {
+      const product = parseInt(numbers[0]) * parseInt(numbers[1]);
+      return product.toString();
+    }
   }
+  else if (query.toLowerCase().includes("the largest")) {
+    const numbers = query.match(/\d+/g);
+
+    if (numbers) {
+      const largestNumber = Math.max(...numbers.map(Number));
+      return largestNumber.toString();
+    }
+  }
+
 
   return "";
 }
