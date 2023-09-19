@@ -9,18 +9,18 @@ export default function QueryProcessor(query: string): string {
     return (
       "My andrew id is mleboffe."
     );
-    }
-  else if (query.toLowerCase().includes("What is your name?")) {
+  } else if (query.toLowerCase().includes("what is your name?")) {
     return (
       "My name is Lebo."
     );
-  }
-  else if (query.toLowerCase().includes("What is 12 plus 30?")) {
-    return (
-      "32"
-    );
+  } else if (query.toLowerCase().includes("plus")) {
+    const numbers = query.match(/\d+/g); // Extract numbers from string
+
+    if (numbers && numbers.length === 2) {
+      const sum = parseInt(numbers[0]) + parseInt(numbers[1]);
+      return sum.toString();
+    }
   }
 
-  
   return "";
 }
