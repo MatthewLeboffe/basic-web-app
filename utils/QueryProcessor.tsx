@@ -20,7 +20,16 @@ export default function QueryProcessor(query: string): string {
       const sum = parseInt(numbers[0]) + parseInt(numbers[1]);
       return sum.toString();
     }
-  } else if (query.toLowerCase().includes("multiplied by")) {
+  } else if (query.toLowerCase().includes("minus")) {
+  const numbers = query.match(/\d+/g);
+
+  if (numbers && numbers.length === 2) {
+    const sum = parseInt(numbers[0]) - parseInt(numbers[1]);
+    return sum.toString();
+  }
+} 
+  
+  else if (query.toLowerCase().includes("multiplied by")) {
     const numbers = query.match(/\d+/g);
 
     if (numbers && numbers.length === 2) {
@@ -35,6 +44,19 @@ export default function QueryProcessor(query: string): string {
       const largestNumber = Math.max(...numbers.map(Number));
       return largestNumber.toString();
     }
+  }
+  else if (query.toLowerCase().includes("square and a cube")) {
+    const numbers = query.match(/\d+/g);
+
+    if (numbers) {
+      for (let num of numbers) {
+        const root = Math.pow(parseInt(num), 1/6);
+        if (Math.round(root) === root) {
+          return num;
+        }
+      }
+    }
+    return "None.";
   }
 
 
