@@ -11,7 +11,7 @@ export default function QueryProcessor(query: string): string {
     );
   } else if (query.toLowerCase().includes("what is your name?")) {
     return (
-      "My name is Lebo."
+      "TheHolySpirit"
     );
   } else if (query.toLowerCase().includes("plus")) {
     const numbers = query.match(/\d+/g); // Extract numbers from string
