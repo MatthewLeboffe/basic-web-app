@@ -15,5 +15,12 @@ export default function QueryProcessor(query: string): string {
       "My name is Lebo."
     );
   }
+  else if (query.toLowerCase().includes("What is 12 plus 30?")) {
+    return (
+      "32"
+    );
+  }
+
+  
   return "";
 }
