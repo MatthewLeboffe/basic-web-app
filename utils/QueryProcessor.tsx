@@ -1,3 +1,18 @@
+function isPrime(n: number): boolean {
+  if (n <= 1) return false;
+  if (n <= 3) return true;
+
+  if (n % 2 === 0 || n % 3 === 0) return false;
+
+  let i = 5;
+  while (i * i <= n) {
+    if (n % i === 0 || n % (i + 2) === 0) return false;
+    i += 6;
+  }
+  return true;
+}
+
+
 export default function QueryProcessor(query: string): string {
   if (query.toLowerCase().includes("shakespeare")) {
     return (
@@ -50,15 +65,32 @@ export default function QueryProcessor(query: string): string {
 
     if (numbers) {
       for (let num of numbers) {
-        const root = Math.pow(parseInt(num), 1/6);
-        if (Math.round(root) === root) {
-          return num;
+        let n = parseInt(num);
+        if ((n > 0 && Math.sqrt(n) % 1 === 0) && (Math.cbrt(n) % 1 === 0)) {
+          return n.toString();
         }
       }
     }
     return "None.";
   }
+  else if (query.toLowerCase().includes("primes:")) {
+  const numbers = query.match(/\d+/g);
+  const primeNumbers: number[] = [];
 
+  if (numbers) {
+    for (let num of numbers) {
+      if (isPrime(parseInt(num))) {
+        primeNumbers.push(parseInt(num));
+      }
+    }
+  }
+
+  if (primeNumbers.length > 0) {
+    return primeNumbers.join(", ");
+  } else {
+    return "None.";
+  }
+  }
 
   return "";
 }
