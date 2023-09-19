@@ -31,15 +31,15 @@ export default function QueryProcessor(query: string): string {
   } else if (query.toLowerCase().includes("plus")) {
     const numbers = query.match(/\d+/g);
 
-    if (numbers && numbers.length === 2) {
-      const sum = parseInt(numbers[0]) + parseInt(numbers[1]);
+    if (numbers) {
+      const sum = numbers.reduce((acc, curr) => acc + parseInt(curr), 0);
       return sum.toString();
     }
   } else if (query.toLowerCase().includes("minus")) {
   const numbers = query.match(/\d+/g);
 
-  if (numbers && numbers.length === 2) {
-    const sum = parseInt(numbers[0]) - parseInt(numbers[1]);
+  if (numbers) {
+    const sum = numbers.reduce((acc, curr) => acc + parseInt(curr), 0);
     return sum.toString();
   }
 } 
